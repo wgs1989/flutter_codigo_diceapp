@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +21,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int leftDice = 2;
+  int leftDice = 1;
+  int rightDice = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.redAccent,
       appBar: AppBar(
-        title: Text('DiceApp'),
+        title: const Text('DiceApp'),
         backgroundColor: Colors.redAccent,
         centerTitle: true,
         elevation: 10,
@@ -39,10 +42,9 @@ class _HomePageState extends State<HomePage> {
               flex: 1,
               child: TextButton(
                 onPressed: () {
-                  print('Dado izquierdo');
-                  leftDice = 6;
+                  leftDice = Random().nextInt(6) + 1;
+                  rightDice = Random().nextInt(6) + 1;
                   setState(() {});
-                  print(leftDice);
                 },
                 child: Image.asset(
                   'assets/images/dice$leftDice.png',
@@ -53,10 +55,12 @@ class _HomePageState extends State<HomePage> {
               flex: 1,
               child: TextButton(
                 onPressed: () {
-                  print('Dado derecho');
+                  leftDice = Random().nextInt(6) + 1;
+                  rightDice = Random().nextInt(6) + 1;
+                  setState(() {});
                 },
                 child: Image.asset(
-                  'assets/images/dice4.png',
+                  'assets/images/dice$rightDice.png',
                 ),
               ),
             ),
